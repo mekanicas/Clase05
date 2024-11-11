@@ -1,0 +1,16 @@
+import express from 'express'
+import { connectDB } from './config/mongoDB.config.js';
+import router from "./router/index.router.js"
+
+const app = express();
+connectDB();
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+
+app.use("/api", router);
+
+app.listen(8080, () => {
+  console.log("Server on port 8080");
+});
